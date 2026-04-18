@@ -1,7 +1,16 @@
 import {useMemo, useState} from 'react';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const WHATSAPP_REGEX = /^\+?[1-9]\d{7,14}$/;
+const ALLOWED_ROLES = ['MEMBER', 'GUIDE', 'HOMESTAY_OWNER'];
 const STORAGE_KEY = 'qs_waitlist_emails';
+
+const initialFormState = {
+	fullName: '',
+	whatsappNumber: '',
+	email: '',
+	role: 'MEMBER',
+};
 
 const getStoredEmails = () => {
 	if (typeof window === 'undefined') {
@@ -32,8 +41,12 @@ const persistEmail = (email, existingEmails) => {
 	return next;
 };
 
+const normalizeName = (name) => name.trim().replace(/\s+/g, ' ');
+const normalizeWhatsapp = (phone) => phone.trim().replace(/[\s()-]/g, '');
+const normalizeEmail = (email) => email.trim().toLowerCase();
+
 export const useWaitlist = () => {
-	const [email, setEmail] = useState('');
+	const [form, setForm] = useState(initialFormState);
 	const [knownEmails, setKnownEmails] = useState(() => getStoredEmails());
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [feedback, setFeedback] = useState({
@@ -41,12 +54,35 @@ export const useWaitlist = () => {
 		message: '',
 	});
 
-	const normalizedEmail = useMemo(() => email.trim().toLowerCase(), [email]);
+	const normalizedName = useMemo(() => normalizeName(form.fullName), [form.fullName]);
+	const normalizedWhatsapp = useMemo(
+		() => normalizeWhatsapp(form.whatsappNumber),
+		[form.whatsappNumber],
+	);
+	const normalizedEmail = useMemo(() => normalizeEmail(form.email), [form.email]);
+	const normalizedRole = useMemo(() => form.role.trim().toUpperCase(), [form.role]);
+
+	const nameError = normalizedName.length < 2 ? 'Enter a valid full name.' : '';
+	const whatsappError = WHATSAPP_REGEX.test(normalizedWhatsapp)
+		? ''
+		: 'Enter a valid WhatsApp number with country code.';
+	const emailError = EMAIL_REGEX.test(normalizedEmail) ? '' : 'Enter a valid email address.';
+	const roleError = ALLOWED_ROLES.includes(normalizedRole)
+		? ''
+		: 'Select a valid role.';
+
+	const formError = nameError || whatsappError || emailError || roleError;
 	const isDuplicateLocal = useMemo(
 		() => knownEmails.includes(normalizedEmail),
 		[knownEmails, normalizedEmail],
 	);
-	const isEmailValid = EMAIL_REGEX.test(normalizedEmail);
+
+	const setField = (field, value) => {
+		setForm((prev) => ({
+			...prev,
+			[field]: value,
+		}));
+	};
 
 	const submit = async (event) => {
 		event.preventDefault();
@@ -55,10 +91,10 @@ export const useWaitlist = () => {
 			return;
 		}
 
-		if (!isEmailValid) {
+		if (formError) {
 			setFeedback({
 				type: 'error',
-				message: 'Enter a valid email address.',
+				message: formError,
 			});
 			return;
 		}
@@ -83,18 +119,27 @@ export const useWaitlist = () => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({email: normalizedEmail}),
+				body: JSON.stringify({
+					fullName: normalizedName,
+					whatsappNumber: normalizedWhatsapp,
+					email: normalizedEmail,
+					role: normalizedRole,
+				}),
 			});
 
 			const payload = await response.json().catch(() => ({}));
 
 			if (response.status === 201) {
 				setKnownEmails((prev) => persistEmail(normalizedEmail, prev));
+				setForm((prev) => ({
+					...initialFormState,
+					role: prev.role,
+				}));
 				setFeedback({
 					type: 'success',
 					message:
 						payload.message ||
-						'You are in. Welcome to Quiet Summit early access.',
+						'Registration received. We will contact you for onboarding.',
 				});
 				return;
 			}
@@ -113,7 +158,7 @@ export const useWaitlist = () => {
 				type: 'error',
 				message:
 					payload.message ||
-					'Something went wrong. Try again in a moment.',
+					'Something went wrong. Please try again in a moment.',
 			});
 		} catch {
 			setFeedback({
@@ -127,9 +172,15 @@ export const useWaitlist = () => {
 	};
 
 	return {
-		email,
-		setEmail,
-		isEmailValid,
+		form,
+		setField,
+		fieldErrors: {
+			fullName: nameError,
+			whatsappNumber: whatsappError,
+			email: emailError,
+			role: roleError,
+		},
+		isFormValid: !formError,
 		isDuplicateLocal,
 		isSubmitting,
 		feedback,

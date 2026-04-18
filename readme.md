@@ -75,7 +75,7 @@ Update values:
 	- `VITE_API_BASE_URL` should point to your backend URL
 - `server/.env`
 	- `MONGODB_URI` is your MongoDB Atlas connection string
-	- `CLIENT_ORIGIN` is your frontend URL
+	- `CLIENT_ORIGINS` is a comma-separated list of allowed frontend URLs
 
 ### 3. Run Locally
 
@@ -148,7 +148,7 @@ Responses:
 6. Add environment variables:
 	 - `PORT=5000`
 	 - `MONGODB_URI=<atlas-uri>`
-	 - `CLIENT_ORIGIN=<your-vercel-url>`
+	 - `CLIENT_ORIGINS=<your-render-url>,<your-custom-domain>`
 	 - `NODE_ENV=production`
 7. Deploy.
 

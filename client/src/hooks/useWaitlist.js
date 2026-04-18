@@ -75,8 +75,9 @@ export const useWaitlist = () => {
 		setFeedback({type: 'idle', message: ''});
 
 		try {
-			const apiBaseUrl =
-				(import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
+			const apiBaseUrl = (
+				import.meta.env.VITE_API_BASE_URL || '/api'
+			).replace(/\/$/, '');
 			const response = await fetch(`${apiBaseUrl}/waitlist`, {
 				method: 'POST',
 				headers: {

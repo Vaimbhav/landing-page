@@ -1,0 +1,27 @@
+--- src/components/WaitlistForm.jsx
++++ src/components/WaitlistForm.jsx
+@@ -208,7 +208,7 @@
+                                                <span className="field-hint">Optional</span>
+                                        </span>
+-                                       <div className="grid grid-cols-[8.75rem_minmax(0,1fr)] gap-3 sm:grid-cols-[10rem_minmax(0,1fr)]">
++                                       <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3 sm:grid-cols-[7.25rem_minmax(0,1fr)]">
+                                                <CountryCodeDropdown
+                                                        value={form.countryCode}
+                                                        onChange={(v) => setField('countryCode', v)}
+                                                />
+                                                <input
+                                                        type="tel"
+                                                        value={form.whatsappNumber}
+-                                                       onChange={(e) => setField('whatsappNumber', e.target.value)}
++                                                       onChange={(e) => {
++                                                               const val = e.target.value;
++                                                               if (/^[\d\s\-]*$/.test(val)) {
++                                                                       setField('whatsappNumber', val);
++                                                               }
++                                                       }}
++                                                       pattern="[\d\s\-]*"
+                                                        placeholder="Number"
+                                                        autoComplete="tel-national"
+                                                        className="underline-input min-w-0"
+                                                />
+                                        </div>

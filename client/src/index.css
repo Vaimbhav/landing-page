@@ -3,44 +3,197 @@
 @tailwind utilities;
 
 @layer base {
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
+        *,
+        *::before,
+        *::after {
+                box-sizing: border-box;
+        }
 
-	html {
-		scroll-behavior: smooth;
-	}
+        html {
+                scroll-behavior: smooth;
+        }
 
-	body {
-		margin: 0;
-		min-height: 100vh;
-		font-family: 'Inter', system-ui, sans-serif;
-		font-weight: 400;
-		color: #FAFAF7;
-		background-color: #0A0A0A;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		text-rendering: optimizeLegibility;
-	}
+        body {
+                margin: 0;
+                min-height: 100vh;
+                font-family: 'Inter', system-ui, sans-serif;
+                font-weight: 400;
+                color: #FAFAF7;
+                background-color: #0A0A0A;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+        }
 
-	::selection {
-		background: #FAFAF7;
-		color: #0A0A0A;
-	}
+        ::selection {
+                background: #FAFAF7;
+                color: #0A0A0A;
+        }
+
+        input.underline-input:-webkit-autofill,
+        input.underline-input:-webkit-autofill:hover,
+        input.underline-input:-webkit-autofill:focus,
+        input.underline-input:-webkit-autofill:active {
+                -webkit-text-fill-color: #FAFAF7;
+                border: 1px solid rgba(250, 250, 247, 0.25);
+                -webkit-box-shadow: 0 0 0 1000px rgba(250, 250, 247, 0.06) inset;
+                box-shadow: 0 0 0 1000px rgba(250, 250, 247, 0.06) inset;
+                transition: background-color 9999s ease-in-out 0s;
+        }
 }
 
 @layer components {
-	.eyebrow {
-		@apply inline-flex items-center text-[0.7rem] font-medium uppercase tracking-widest text-paper/70;
-	}
+        .eyebrow {
+                @apply inline-flex items-center text-[0.7rem] font-medium uppercase tracking-widest text-paper/70;
+        }
 
-	.rule {
-		@apply h-px w-full bg-paper/15;
-	}
+        .rule {
+                @apply h-px w-full bg-paper/15;
+        }
 
-	.underline-input {
-		@apply w-full border-0 border-b border-paper/25 bg-transparent px-0 py-3 text-base text-paper placeholder-paper/35 outline-none transition focus:border-paper;
-	}
+        .waitlist-shell {
+                @apply relative overflow-hidden rounded-xl border border-paper/[0.08] px-6 py-8 shadow-2xl backdrop-blur-xl md:px-10 md:py-10 transition-all duration-700 ease-out;
+                background:
+                        radial-gradient(100% 100% at 50% 0%, rgba(250, 250, 247, 0.05) 0%, rgba(250, 250, 247, 0) 100%),
+                        linear-gradient(180deg, rgba(20, 20, 20, 0.6) 0%, rgba(10, 10, 10, 0.9) 100%);
+                box-shadow:
+                        inset 0 1px 0 rgba(250, 250, 247, 0.1),
+                        inset 0 0 20px rgba(250, 250, 247, 0.02),
+                        0 30px 80px -10px rgba(0, 0, 0, 0.8),
+                        0 0 0 1px rgba(0,0,0,0.5);
+                transform-origin: center top;
+        }
+
+        .waitlist-shell:hover {
+                border-color: rgba(250, 250, 247, 0.12);
+                box-shadow:
+                        inset 0 1px 0 rgba(250, 250, 247, 0.15),
+                        inset 0 0 30px rgba(250, 250, 247, 0.03),
+                        0 40px 100px -10px rgba(0, 0, 0, 0.9),
+                        0 0 0 1px rgba(0,0,0,0.5);
+        }
+
+        .waitlist-shell::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: url('data:image/svg+xml;utf8,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"1.5\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/%3E%3C/svg%3E');
+                opacity: 0.6;
+                pointer-events: none;
+                mix-blend-mode: overlay;
+                z-index: 0;
+        }
+
+        .waitlist-shell > * {
+                position: relative;
+                z-index: 1;
+        }
+
+        .field-caption {
+                @apply flex items-baseline justify-between text-[0.68rem] uppercase tracking-[0.22em] text-paper/55;
+        }
+
+        .field-hint {
+                @apply text-paper/35;
+        }
+
+        .underline-input {
+                @apply w-full rounded-md border border-paper/[0.15] bg-ink/40 px-4 py-3.5 text-base text-paper placeholder-paper/30 outline-none backdrop-blur-md transition-all duration-500 ease-out;
+                @apply shadow-[inset_0_2px_4px_rgba(0,0,0,0.5),0_10px_24px_rgba(0,0,0,0.28)];
+                @apply hover:border-paper/[0.25] hover:bg-ink/60 hover:shadow-[inset_0_2px_8px_rgba(0,0,0,0.4),_0_0_15px_rgba(250,250,247,0.03)];
+                @apply focus:border-paper/[0.4] focus:bg-ink/80 focus:shadow-[inset_0_2px_8px_rgba(0,0,0,0.6),_0_0_20px_rgba(250,250,247,0.05)];
+                background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+        }
+
+        .premium-trigger {
+                @apply flex w-full items-center justify-between rounded-md border border-paper/[0.15] bg-ink/40 px-4 py-3.5 text-left text-base text-paper backdrop-blur-md transition-all duration-500 ease-out outline-none;
+                @apply shadow-[inset_0_2px_4px_rgba(0,0,0,0.5),0_10px_24px_rgba(0,0,0,0.28)];
+                @apply hover:border-paper/[0.25] hover:bg-ink/60 hover:shadow-[inset_0_2px_8px_rgba(0,0,0,0.4),_0_0_15px_rgba(250,250,247,0.03)];
+                @apply focus:border-paper/[0.4] focus:bg-ink/80 focus:shadow-[inset_0_2px_8px_rgba(0,0,0,0.6),_0_0_20px_rgba(250,250,247,0.05)];
+                background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+        }
+
+        .premium-trigger-compact {
+                @apply gap-2 pr-3;
+        }
+
+        .premium-menu {
+                @apply absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-md border border-paper/10 bg-ink/80 backdrop-blur-2xl shadow-[0_30px_60px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.08)];
+        }
+
+        .premium-option {
+                @apply flex w-full items-center justify-between px-4 py-3 text-left text-sm transition duration-200;
+        }
+
+        .premium-option-default {
+                @apply text-paper/70;
+        }
+
+        .premium-option-selected {
+                @apply text-paper;
+        }
+
+        .premium-option:hover {
+                @apply bg-paper/[0.12] text-paper;
+        }
+
+        .iso-chip {
+                @apply inline-flex min-w-9 items-center justify-center rounded-[4px] border border-paper/10 bg-paper/5 px-2 py-1 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-paper/70;
+        }
+
+        .waitlist-submit {
+                @apply relative overflow-hidden inline-flex items-center justify-center gap-3 rounded-full border border-paper/10 bg-paper px-9 py-4 text-[0.74rem] font-semibold uppercase tracking-[0.24em] text-ink transition-all duration-500 ease-out;
+                @apply disabled:cursor-not-allowed disabled:opacity-40 !important;
+                box-shadow:
+                        inset 0 1px 0 rgba(255, 255, 255, 1),
+                        inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+                        0 10px 30px rgba(250, 250, 247, 0.15),
+                        0 0 0 1px rgba(250, 250, 247, 0.05);
+        }
+
+        .waitlist-submit::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(250,250,247,0.5));
+                z-index: -1;
+                border-radius: inherit;
+        }
+
+        .waitlist-submit > * {
+                position: relative;
+                z-index: 1;
+        }
+
+        .waitlist-submit:hover {
+                transform: translateY(-2px);
+                box-shadow:
+                        inset 0 1px 0 rgba(255, 255, 255, 1),
+                        inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+                        0 20px 40px rgba(250, 250, 247, 0.25),
+                        0 0 0 1px rgba(250, 250, 247, 0.15);
+        }
+
+        .waitlist-submit:active {
+                transform: translateY(1px);
+                box-shadow:
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                        0 5px 15px rgba(250, 250, 247, 0.1);
+        }
+
+        .waitlist-note {
+                @apply max-w-sm text-sm leading-relaxed text-paper/55;
+        }
+
+        .waitlist-feedback {
+                @apply mt-6 rounded-[2px] border px-4 py-3 text-sm;
+        }
+
+        .waitlist-feedback-success {
+                @apply border-paper/20 bg-paper/[0.08] text-paper/85;
+        }
+
+        .waitlist-feedback-error {
+                @apply border-red-300/40 bg-red-300/10 text-red-200;
+        }
 }

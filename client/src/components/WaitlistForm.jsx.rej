@@ -1,0 +1,37 @@
+@@ -124,8 +124,7 @@
+                                aria-expanded={open}
+                                className="underline-input flex items-center justify-between gap-1.5 px-3 h-[54px]"
+                        >
+-                               <span className="text-lg leading-none" aria-hidden="true">{current.flag}</span>
+-                               <span className="text-paper/90">{current.code}</span>
++                               <span className="text-paper/90 font-medium tracking-wide">{current.code}</span>
+                                <span
+                                        className={`text-paper/50 transition-transform ${open ? 'rotate-180' : ''}`}
+                                        aria-hidden="true"
+@@ -176,7 +175,7 @@
+                <form onSubmit={submit} id="waitlist-form" noValidate className="w-full">
+                        <div className="grid gap-8 md:grid-cols-2">
+                                <label className="block">
+-                                       <span className="flex items-baseline justify-between text-[0.7rem] uppercase tracking-widest text-paper/60">
++                                       <span className="flex items-baseline justify-between mb-3 text-[0.7rem] uppercase tracking-widest text-paper/60">
+                                                <span>Email</span>
+                                                <span className="text-paper/40">Required</span>
+                                        </span>
+@@ -201,7 +200,7 @@
+                                </div>
+ 
+                                <label className="block">
+-                                       <span className="flex items-baseline justify-between text-[0.7rem] uppercase tracking-widest text-paper/60">
++                                       <span className="flex items-baseline justify-between mb-3 text-[0.7rem] uppercase tracking-widest text-paper/60">
+                                                <span>Name</span>
+                                                <span className="text-paper/40">Optional</span>
+                                        </span>
+@@ -216,7 +215,7 @@
+                                </label>
+ 
+                                <div className="block">
+-                                       <span className="flex items-baseline justify-between text-[0.7rem] uppercase tracking-widest text-paper/60">
++                                       <span className="flex items-baseline justify-between mb-3 text-[0.7rem] uppercase tracking-widest text-paper/60">
+                                                <span>WhatsApp</span>
+                                                <span className="text-paper/40">Optional</span>
+                                        </span>

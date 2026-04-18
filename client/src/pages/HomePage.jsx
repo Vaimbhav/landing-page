@@ -213,10 +213,18 @@ function PhotoBreakSection() {
 
 function WaitlistSection() {
 	return (
-		<section id="waitlist" className="border-b border-paper/10">
+		<section id="waitlist" className="relative overflow-hidden border-b border-paper/10">
+			<div
+				className="pointer-events-none absolute inset-0 opacity-70"
+				aria-hidden="true"
+				style={{
+					background:
+						'radial-gradient(70% 85% at 16% 30%, rgba(250,250,247,0.07), rgba(250,250,247,0) 65%), radial-gradient(55% 70% at 86% 68%, rgba(250,250,247,0.05), rgba(250,250,247,0) 75%)',
+				}}
+			/>
 			<div className="mx-auto w-full max-w-[1400px] px-6 py-24 md:px-12 lg:px-16 lg:py-32">
 				<div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
-					<div>
+					<div className="relative">
 						<p className="eyebrow">{waitlistSection.eyebrow}</p>
 						<h2 className="mt-4 font-serif text-3xl leading-tight text-paper sm:text-4xl lg:text-5xl">
 							{waitlistSection.title}
@@ -224,8 +232,12 @@ function WaitlistSection() {
 						<p className="mt-6 max-w-md text-base leading-relaxed text-paper/70">
 							{waitlistSection.description}
 						</p>
+						<p className="mt-8 max-w-md text-[0.72rem] uppercase tracking-[0.22em] text-paper/40">
+							Founding cohort entries are reviewed manually.
+						</p>
 					</div>
-					<div>
+					<div className="relative">
+						<div className="pointer-events-none absolute -inset-5 bg-paper/[0.03] blur-2xl" aria-hidden="true" />
 						<WaitlistForm />
 					</div>
 				</div>

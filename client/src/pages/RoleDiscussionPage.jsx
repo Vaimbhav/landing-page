@@ -164,9 +164,8 @@ function RoleDiscussionPage() {
                         return (
                             <article
                                 key={item.question}
-                                className={`overflow-hidden rounded-2xl border transition ${
-                                    isOpen ? theme.discussionOpen : theme.discussionClosed
-                                }`}
+                                className={`overflow-hidden rounded-2xl border transition ${isOpen ? theme.discussionOpen : theme.discussionClosed
+                                    }`}
                             >
                                 <button
                                     type="button"
@@ -177,9 +176,8 @@ function RoleDiscussionPage() {
                                         {item.question}
                                     </span>
                                     <span
-                                        className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 text-slate-100 transition ${
-                                            isOpen ? "rotate-180" : ""
-                                        }`}
+                                        className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 text-slate-100 transition ${isOpen ? "rotate-180" : ""
+                                            }`}
                                     >
                                         <ChevronDown className="h-4 w-4" />
                                     </span>
@@ -295,9 +293,8 @@ function RoleDiscussionPage() {
                                 <Link
                                     key={slug}
                                     to={`/roles/${slug}`}
-                                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition ${
-                                        active ? theme.activeTab : theme.inactiveTab
-                                    }`}
+                                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition ${active ? theme.activeTab : theme.inactiveTab
+                                        }`}
                                 >
                                     {route.label}
                                 </Link>

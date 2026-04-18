@@ -114,7 +114,10 @@ Request body:
 
 ```json
 {
-	"email": "you@example.com"
+	"fullName": "Your Name",
+	"whatsappNumber": "+91XXXXXXXXXX",
+	"email": "you@example.com",
+	"role": "MEMBER"
 }
 ```
 

@@ -296,9 +296,8 @@ function FeaturesSection() {
                                 {leaderStats.map((stat, index) => (
                                     <div
                                         key={stat.value + stat.subLabel}
-                                        className={`flex min-h-36 flex-col items-center justify-center px-4 py-6 text-center ${
-                                            index === 0 ? "relative" : ""
-                                        }`}
+                                        className={`flex min-h-36 flex-col items-center justify-center px-4 py-6 text-center ${index === 0 ? "relative" : ""
+                                            }`}
                                     >
                                         {index === 0 ? (
                                             <span className="absolute -left-4 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#cc6a35] bg-[#1f503f] text-[#cc6a35]">
@@ -340,9 +339,8 @@ function FeaturesSection() {
                             return (
                                 <article
                                     key={item.step}
-                                    className={`min-h-72 border-[#2d2a25] bg-[#0a0808]/95 p-6 ${
-                                        index < journeyFlow.length - 1 ? "border-b xl:border-b-0 xl:border-r" : ""
-                                    } ${index === 1 ? "md:border-r" : ""}`}
+                                    className={`min-h-72 border-[#2d2a25] bg-[#0a0808]/95 p-6 ${index < journeyFlow.length - 1 ? "border-b xl:border-b-0 xl:border-r" : ""
+                                        } ${index === 1 ? "md:border-r" : ""}`}
                                 >
                                     <p className="font-display text-[3.2rem] leading-none text-[#1d1b18]">{item.step}</p>
                                     <Icon className="mt-6 h-5 w-5 text-[#f4efe6]" />

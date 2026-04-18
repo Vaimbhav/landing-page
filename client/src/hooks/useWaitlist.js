@@ -76,8 +76,7 @@ export const useWaitlist = () => {
 
 		try {
 			const apiBaseUrl =
-				import.meta.env.VITE_API_BASE_URL ||
-				'http://localhost:5000/api';
+				(import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 			const response = await fetch(`${apiBaseUrl}/waitlist`, {
 				method: 'POST',
 				headers: {

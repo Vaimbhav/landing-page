@@ -4,13 +4,13 @@ const waitlistEntrySchema = new mongoose.Schema(
 	{
 		fullName: {
 			type: String,
-			required: true,
+			required: false,
 			trim: true,
 			maxlength: 80,
 		},
 		whatsappNumber: {
 			type: String,
-			required: true,
+			required: false,
 			trim: true,
 		},
 		email: {
@@ -23,7 +23,7 @@ const waitlistEntrySchema = new mongoose.Schema(
 		role: {
 			type: String,
 			required: true,
-			enum: ['MEMBER', 'GUIDE', 'HOMESTAY_OWNER'],
+			enum: ['TRAVELLER', 'MEMBER', 'GUIDE', 'HOMESTAY_OWNER'],
 		},
 		createdAt: {
 			type: Date,

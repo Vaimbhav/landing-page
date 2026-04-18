@@ -16,6 +16,8 @@ const __dirname = path.dirname(__filename);
 const clientDistPath = path.resolve(__dirname, '../../client/dist');
 const clientIndexPath = path.join(clientDistPath, 'index.html');
 const hasClientBuild = fs.existsSync(clientIndexPath);
+const allowedOrigins = new Set(config.clientOrigins);
+const normalizeOrigin = (origin = '') => origin.replace(/\/+$/, '');
 
 const waitlistLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000,
@@ -31,8 +33,15 @@ const waitlistLimiter = rateLimit({
 app.use(helmet());
 app.use(
 	cors({
-		origin: config.clientOrigin,
-		methods: ['GET', 'POST'],
+		origin: (origin, callback) => {
+			if (!origin || allowedOrigins.has(normalizeOrigin(origin))) {
+				callback(null, true);
+				return;
+			}
+
+			callback(null, false);
+		},
+		methods: ['GET', 'POST', 'OPTIONS'],
 	}),
 );
 app.use(express.json({limit: '10kb'}));

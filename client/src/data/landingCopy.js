@@ -1,292 +1,292 @@
+export const brand = {
+	name: 'Quiet Summit',
+	launchBadge: 'Launching May 2026',
+	tagline: 'Slow travel. Deep connections. Intentional experiences in nature.',
+};
+
 export const navLinks = [
-	{label: 'User Experience', href: '/roles/user'},
+	{label: 'Traveller', href: '/roles/traveller'},
 	{label: 'Member', href: '/roles/member'},
 	{label: 'Guide', href: '/roles/guide'},
 	{label: 'Homestay Owner', href: '/roles/homestay-owner'},
-	{label: 'Get In Touch', href: '#register'},
 ];
 
 export const heroContent = {
-	badge: 'Pre-Launch Experience',
-	headline: 'User Experience First For Trusted Mountain Travel',
+	headline: 'Himalayan journeys,',
+	headlineAccent: 'designed quietly.',
 	subtext:
-		'Quiet Summit is designed to feel calm, transparent, and reliable from the first screen. You see verified options, clear expectations, and role-specific onboarding before launch.',
-	primaryCta: 'Register For Early Access',
-	secondaryCta: 'See Role Experience',
-	trustPoints: [
-		'Fixed background storytelling for a premium feel',
-		'Short, role-based product clarity without noise',
-		'Trust-first onboarding with direct team follow-up',
-	],
+		'Verified local guides. Family-run homestays. A rural, raw Himalayan experience — unhurried and unfiltered. No algorithms. Just mountains, breath, and silence.',
+	ctaPrimary: 'Join the waitlist',
+	photoQuote: {
+		text: 'The mountains are calling and I must go.',
+		author: 'John Muir',
+	},
 };
 
-export const roleExperiences = [
+export const roleSnapshot = [
 	{
-		id: 'member-experience',
-		icon: 'Users',
-		role: 'Member Experience',
-		comingSoon: 'Coming Soon',
+		slug: 'traveller',
+		index: '01',
+		label: 'Traveller',
 		summary:
-			'Discover and join verified journeys with a cleaner planning flow and confidence-first support.',
-		canDo: [
-			'Browse verified journeys, guides, and homestays in one flow',
-			'Get priority updates for early departures and limited slots',
-			'Join a trusted member circle before public launch',
-		],
-		requirements: [
-			'Complete basic profile details and contact information',
-			'Finish verification when invited for full activation',
-			'Agree to community and safety standards',
-		],
-		earnings: [
-			'Referral and loyalty rewards start with launch programs',
-			'Early members receive founder-tier launch benefits',
-		],
+			'Discover verified journeys and stays. Book with clarity, walk away with something quieter than you arrived with.',
 	},
 	{
-		id: 'guide-experience',
-		icon: 'Compass',
-		role: 'Guide Experience',
-		comingSoon: 'Coming Soon',
+		slug: 'member',
+		index: '02',
+		label: 'Member',
 		summary:
-			'Show your expertise, manage your availability, and grow with a verified audience from day one.',
-		canDo: [
-			'Build a profile with region, language, and trek specialities',
-			'Receive role-matched inquiries based on availability',
-			'Participate in curated launch cohorts for visibility',
-		],
-		requirements: [
-			'Provide ID and core professional details',
-			'Share experience and relevant certifications',
-			'Commit to service quality and response timelines',
-		],
-		earnings: [
-			'Transparent payout structure with clear commission rules',
-			'Early guides receive launch-priority onboarding rewards',
-		],
+			'Lead small-group journeys you would want to be on. Earn a free seat once your trip fills, and grow a reputation that travels with you.',
 	},
 	{
-		id: 'owner-experience',
-		icon: 'Home',
-		role: 'Homestay Owner Experience',
-		comingSoon: 'Coming Soon',
+		slug: 'guide',
+		index: '03',
+		label: 'Guide',
 		summary:
-			'List your property with trust signals, control pricing, and onboard to quality travelers faster.',
-		canDo: [
-			'Set up property, room, and seasonal availability details',
-			'Get structured onboarding support before launch',
-			'Build trust through verified presentation and quality cues',
-		],
-		requirements: [
-			'Share ownership or lease proof and property identity details',
-			'Provide clear property photos and room information',
-			'Accept guest experience and hosting standards',
-		],
-		earnings: [
-			'Clear settlement visibility with no hidden steps',
-			'Early owners receive launch spotlight and onboarding rewards',
-		],
+			'Get QS-verified. Reach travellers who value your craft, your region, and your pace. Transparent payouts, no hidden commission.',
+	},
+	{
+		slug: 'homestay-owner',
+		index: '04',
+		label: 'Homestay Owner',
+		summary:
+			'List your home. Host at your rhythm. Reach guests who come for silence and stay for the story.',
 	},
 ];
 
-export const roleRouteOrder = ['user', 'member', 'guide', 'homestay-owner'];
+export const processSteps = [
+	{number: '01', title: 'Register', description: 'Share your role and contact once. We review every entry by hand.'},
+	{number: '02', title: 'Verify', description: 'We reach out, verify credentials, and onboard you by role.'},
+	{number: '03', title: 'Launch', description: 'You go live with the platform in May 2026 — as a founding partner.'},
+];
+
+export const founderRewards = [
+	{
+		title: 'Founding spotlight',
+		description:
+			'The first cohort of guides, members, and owners are featured across our launch communication. Your story travels before your trip does.',
+	},
+	{
+		title: 'Lifetime founder tier',
+		description:
+			'Early partners keep founder-tier status permanently. Priority listing, preferential payouts, and first access to new regions.',
+	},
+	{
+		title: 'No noise between the signal',
+		description:
+			'We only reach out when it matters — a launch, an onboarding step, a change that affects you. No drip sequences. No upsells. No daily nudges.',
+	},
+];
+
+export const foundingStory = {
+	eyebrow: 'Why this exists',
+	paragraphs: [
+		'Quiet Summit was built for the traveller who has stopped believing in itineraries.',
+		'We are a small team stitching together verified local guides, family-run homestays, and unhurried journeys across the Indian Himalaya — with none of the noise that modern travel has come to mean.',
+		'No notifications. No algorithms. Just mountains, breath, and silence.',
+	],
+};
+
+export const photoBreak = {
+	image: '/panorama.jpg',
+	quote: 'Walking away from comfort to walk back to clarity.',
+	attribution: 'Quiet Summit',
+};
+
+export const waitlistSection = {
+	eyebrow: 'Early access',
+	title: 'Register once. We take it from here.',
+	description:
+		'Fill in your details and we will contact you for role-based onboarding. This pre-launch list is for serious early partners only.',
+};
+
+export const rolePhotos = {
+	traveller: '/village.jpg',
+	member: '/trekkers.jpg',
+	guide: '/sunrise.jpg',
+	'homestay-owner': '/forest.jpg',
+};
+
+export const rolePullQuotes = {
+	traveller: {text: 'Not all those who wander are lost.', author: 'J.R.R. Tolkien'},
+	member: {text: 'The best journeys answer questions that in the beginning you didn\u2019t even think to ask.', author: 'Jennifer Lee'},
+	guide: {text: 'There is no shortage of good days. It is good lives that are hard to come by.', author: 'Annie Dillard'},
+	'homestay-owner': {text: 'A house is made of walls and beams; a home is built with love and dreams.', author: 'Ralph Waldo Emerson'},
+};
+
+export const roleRouteOrder = ['traveller', 'member', 'guide', 'homestay-owner'];
 
 export const roleDiscussionRoutes = {
-	user: {
-		label: 'User Experience',
-		eyebrow: 'Role Discussion',
-		title: 'Planning as a User Before You Join as a Partner',
+	traveller: {
+		label: 'Traveller',
+		eyebrow: 'For travellers',
+		title: 'Journeys, not itineraries.',
 		subtitle:
-			'Users discover verified routes, compare trusted people, and decide with clarity before booking.',
+			'Discover verified routes, compare trusted people, and decide with clarity before you book. Less planning. More presence.',
 		highlights: [
-			'Discover verified journeys with transparent details',
-			'Compare guides and homestays in one trusted flow',
-			'Join early launches and priority announcements',
+			'Browse verified journeys, guides, and homestays in one trusted flow',
+			'Compare trips on what actually matters — pace, group size, host',
+			'Priority notifications when early departures open',
 		],
 		metrics: [
-			{value: 'Clear', label: 'Pricing And Trip Expectations'},
-			{value: 'Verified', label: 'Guides And Homestays First'},
-			{value: 'Fast', label: 'Role-Based Onboarding Response'},
+			{value: 'Verified', label: 'Guides and hosts, every one'},
+			{value: 'Clear', label: 'Pricing and trip expectations'},
+			{value: 'Small', label: 'Groups, max twelve'},
 		],
 		discussions: [
 			{
-				question: 'What can users do right now?',
+				question: 'What can travellers do at launch?',
 				answers: [
-					'Browse trusted journeys, guides, and homestays in one place',
-					'Register early and receive launch updates before public release',
-					'Understand role benefits before becoming a member, guide, or owner',
+					'Browse curated Himalayan journeys with verified guides and homestays',
+					'Book with full clarity on pricing, pace, group size, and trip intention',
+					'Receive a single launch notification — no newsletters, no drip campaigns',
 				],
 			},
 			{
-				question: 'Why is this better than random listings?',
+				question: 'Why is this different from other platforms?',
 				answers: [
-					'Profiles are built with verification-first trust signals',
-					'Product flow is designed to remove confusion and hidden terms',
-					'Launch communication is direct and role-aware, not spam-driven',
+					'Every guide and stay is verified by hand before it goes live',
+					'Group sizes are capped to protect the experience',
+					'Communication is direct — no chatbots, no algorithmic push',
 				],
 			},
 			{
-				question: 'What if I want to become a role partner?',
+				question: 'What if I want to host instead of join?',
 				answers: [
-					'Select your role in the registration form and share basic details',
-					'Our team contacts you for role-specific onboarding requirements',
-					'Early applicants get founder-priority communication and rewards',
+					'Select Member, Guide, or Homestay Owner on the registration form',
+					'Our team reaches out for role-specific onboarding',
+					'Early partners receive founding-tier benefits permanently',
 				],
 			},
 		],
 	},
 	member: {
-		label: 'Member Experience',
-		eyebrow: 'Role Discussion',
-		title: 'How Members Lead Journeys With Confidence',
+		label: 'Member',
+		eyebrow: 'For members',
+		title: 'Lead journeys you would want to be on.',
 		subtitle:
-			'Member flow is built for people who want to host trusted journeys and build a credible profile over time.',
+			'Members host small-group journeys for travellers who trust their judgment. You curate the route. We handle verification, logistics, and trust.',
 		highlights: [
-			'Lead verified journeys and grow your public reputation',
-			'Access trusted guide and homestay networks before listing',
-			'Unlock launch-stage rewards and long-term growth signals',
+			'Host verified journeys with local guides and homestays already vetted',
+			'Earn a free seat once your trip fills — your effort is recognised',
+			'Build a reputation that travels across every trip you lead',
 		],
 		metrics: [
-			{value: 'Rs 0', label: 'Trip Cost After Group Fills'},
-			{value: 'Trust', label: 'QS Verified Member Presence'},
-			{value: 'Growth', label: 'Karma Score And Reward Tiers'},
+			{value: 'Free', label: 'Your seat once the group fills'},
+			{value: 'Verified', label: 'Local partners, pre-matched'},
+			{value: 'Reputation', label: 'That compounds across trips'},
 		],
 		discussions: [
 			{
 				question: 'What can members do on Quiet Summit?',
 				answers: [
-					'Create and host journeys with verified local support',
-					'Build credibility with ratings, profile quality, and consistency',
-					'Access members-only planning collaboration before public launch',
+					'Create and host small-group journeys with verified local support',
+					'Build a public profile that grows with every completed trip',
+					'Collaborate with fellow members during the private beta window',
 				],
 			},
 			{
-				question: 'What is required for member onboarding?',
+				question: 'What is required to onboard as a member?',
 				answers: [
-					'Share basic profile, contact details, and role intent clearly',
+					'Share basic profile details and your intent to host',
 					'Complete verification when invited by the onboarding team',
-					'Follow journey safety, community, and service quality standards',
+					'Commit to our safety, community, and service standards',
 				],
 			},
 			{
-				question: 'How do member rewards work?',
+				question: 'How do the member rewards work?',
 				answers: [
-					'Early members get founder-level onboarding priority and visibility',
-					'Referral and loyalty rewards are tied to launch program rules',
-					'Long-term reputation growth unlocks stronger future opportunities',
+					'Founding members keep founder-tier status for life',
+					'Once your trip fills the minimum group size, your seat is free',
+					'Referral rewards and loyalty tiers unlock at launch',
 				],
 			},
 		],
 	},
 	guide: {
-		label: 'Guide Experience',
-		eyebrow: 'Role Discussion',
-		title: 'How Guides Grow With Verified Demand',
+		label: 'Guide',
+		eyebrow: 'For guides',
+		title: 'Reach travellers who value your craft.',
 		subtitle:
-			'Guide onboarding is designed for professionals who want quality leads, transparent payouts, and a trusted profile layer.',
+			'Guide onboarding is designed for professionals who want qualified demand, transparent payouts, and a trusted profile layer — not another race-to-the-bottom marketplace.',
 		highlights: [
-			'Show expertise through structured profile and specialties',
-			'Receive role-matched opportunities with transparent expectations',
-			'Join early cohorts for visibility during launch phase',
+			'Show expertise through region, language, and specialty filters',
+			'Receive role-matched inquiries — only serious travellers reach you',
+			'Transparent payout structure, no hidden commission',
 		],
 		metrics: [
-			{value: 'Transparent', label: 'Payout Structure And Rules'},
-			{value: 'Qualified', label: 'Role-Matched Inquiries'},
-			{value: 'Early', label: 'Launch Cohort Visibility'},
+			{value: 'Transparent', label: 'Payouts, plainly stated'},
+			{value: 'Qualified', label: 'Inquiries, never cold'},
+			{value: 'Verified', label: 'Trust that travels with you'},
 		],
 		discussions: [
 			{
 				question: 'What can guides do on Quiet Summit?',
 				answers: [
-					'Create a professional profile with region, language, and trek focus',
-					'Manage availability and collaborate with verified member journeys',
-					'Build trusted public proof through consistent delivery quality',
+					'Create a professional profile with regions, languages, and specialties',
+					'Manage availability and collaborate with member-led journeys',
+					'Build a public trust layer through consistent delivery',
 				],
 			},
 			{
 				question: 'What is required for guide onboarding?',
 				answers: [
-					'Submit identity and core professional details accurately',
-					'Share relevant experience, certifications, and service standards',
-					'Commit to response timelines and partner quality expectations',
+					'Submit identity and professional details accurately',
+					'Share relevant certifications and proof of experience',
+					'Commit to response time and service quality expectations',
 				],
 			},
 			{
-				question: 'How do guide rewards and payouts work?',
+				question: 'How do payouts work?',
 				answers: [
-					'Payout visibility is clear with no hidden settlement steps',
-					'Early guides receive launch-priority onboarding communication',
-					'High-trust delivery improves long-term inbound opportunity quality',
+					'Payout rules are visible upfront — no hidden deductions',
+					'Early guides receive launch-priority communication',
+					'Consistent delivery improves long-term inbound quality',
 				],
 			},
 		],
 	},
 	'homestay-owner': {
-		label: 'Homestay Owner Experience',
-		eyebrow: 'Role Discussion',
-		title: 'How Homestay Owners Onboard for Trusted Stays',
+		label: 'Homestay Owner',
+		eyebrow: 'For homestay owners',
+		title: 'Host at your own rhythm.',
 		subtitle:
-			'Owners get a structured setup for listing quality spaces, controlling seasonality, and collaborating with verified travelers.',
+			'List your home with structured setup, control seasonality, and host travellers who come for silence. Clear settlements. Clear expectations. Nothing more.',
 		highlights: [
-			'List property and room details with quality trust markers',
-			'Control availability and seasonal setup before public launch',
-			'Get guided onboarding support and trusted booking exposure',
+			'List property, rooms, and seasonal availability in one flow',
+			'Host travellers who arrive with intention, not checklists',
+			'Clear settlements with predictable, on-time payouts',
 		],
 		metrics: [
-			{value: 'Clear', label: 'Settlement And Listing Steps'},
-			{value: 'Verified', label: 'Trust-First Property Presentation'},
-			{value: 'Launch', label: 'Spotlight For Early Owners'},
+			{value: 'Clear', label: 'Settlements, always on time'},
+			{value: 'Verified', label: 'Guests, vetted before arrival'},
+			{value: 'Flexible', label: 'Seasonality, on your terms'},
 		],
 		discussions: [
 			{
 				question: 'What can homestay owners do on Quiet Summit?',
 				answers: [
-					'Set up property, room, and seasonal availability in one flow',
-					'Collaborate with verified members and guides for quality trips',
-					'Build stronger trust through structured listing standards',
+					'Set up property, rooms, and seasonal availability in one flow',
+					'Host verified members and travellers who value your space',
+					'Grow through consistent quality, not volume discounting',
 				],
 			},
 			{
 				question: 'What is required for owner onboarding?',
 				answers: [
-					'Share ownership or lease proof and property identity details',
-					'Provide clear room information and quality visual presentation',
-					'Follow guest experience and hosting quality commitments',
+					'Share ownership or lease proof and property identity',
+					'Provide clear room information and quality visuals',
+					'Follow guest experience and hosting standards',
 				],
 			},
 			{
-				question: 'How do owner rewards and settlements work?',
+				question: 'How do settlements work?',
 				answers: [
-					'Settlement visibility is designed to remain clear and predictable',
-					'Early owners receive launch communication and spotlight priority',
-					'High-quality hosting improves repeat trust and role growth',
+					'Settlement visibility is designed to stay predictable',
+					'Early owners receive launch spotlight and priority',
+					'Quality hosting improves repeat trust and role growth',
 				],
 			},
 		],
 	},
-};
-
-export const launchRewards = [
-	{
-		title: 'Register Before Launch',
-		description:
-			'Share your role and contact details once. Our team shortlists early partners for a priority onboarding batch.',
-	},
-	{
-		title: 'Get Verified And Matched',
-		description:
-			'Members, guides, and homestay owners receive role-specific verification and onboarding guidance.',
-	},
-	{
-		title: 'Unlock Founder Rewards',
-		description:
-			'Early registrants receive launch rewards and priority communication as trust partners of Quiet Summit.',
-	},
-];
-
-export const finalCta = {
-	title: 'Register Early For Member, Guide, Or Owner Onboarding',
-	description:
-		'Fill in your details once and our team will contact you for role-based onboarding. This pre-launch list is built for serious early partners only.',
-	buttonText: 'Submit Registration',
 };

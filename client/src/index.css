@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-	* {
+	*,
+	*::before,
+	*::after {
 		box-sizing: border-box;
 	}
 
@@ -16,47 +16,31 @@
 	body {
 		margin: 0;
 		min-height: 100vh;
-		font-family: 'Manrope', sans-serif;
-		color: #f8fafc;
-		background-color: #020712;
-		text-rendering: geometricPrecision;
+		font-family: 'Inter', system-ui, sans-serif;
+		font-weight: 400;
+		color: #FAFAF7;
+		background-color: #0A0A0A;
 		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
+
+	::selection {
+		background: #FAFAF7;
+		color: #0A0A0A;
 	}
 }
 
 @layer components {
-	.noise-overlay {
-		background-image: radial-gradient(
-			circle at 1px 1px,
-			rgba(255, 255, 255, 0.13) 1px,
-			transparent 0
-		);
-		background-size: 4px 4px;
-	}
-
-	.section-shell {
-		@apply relative py-16 sm:py-20 lg:py-24;
-	}
-
 	.eyebrow {
-		@apply inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-100;
+		@apply inline-flex items-center text-[0.7rem] font-medium uppercase tracking-widest text-paper/70;
 	}
 
-	.section-title {
-		@apply font-display text-3xl font-semibold leading-tight text-white sm:text-4xl;
+	.rule {
+		@apply h-px w-full bg-paper/15;
 	}
 
-	.section-subtitle {
-		@apply text-base leading-relaxed text-slate-200 sm:text-lg;
-	}
-
-	.glass-panel {
-		@apply border border-white/20 backdrop-blur-md shadow-[0_20px_45px_rgba(3,8,18,0.45)];
-		background-color: rgba(7, 23, 41, 0.58);
-	}
-
-	.feature-card {
-		@apply border border-white/20 backdrop-blur-sm shadow-[0_14px_34px_rgba(3,8,18,0.38)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(3,8,18,0.5)];
-		background-color: rgba(8, 26, 46, 0.56);
+	.underline-input {
+		@apply w-full border-0 border-b border-paper/25 bg-transparent px-0 py-3 text-base text-paper placeholder-paper/35 outline-none transition focus:border-paper;
 	}
 }

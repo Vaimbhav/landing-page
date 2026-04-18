@@ -1,12 +1,14 @@
+import {brand} from '../data/landingCopy';
+
 function Footer() {
-    return (
-        <footer className="relative z-10 border-t border-white/15 bg-[#04111d]/82 py-10 backdrop-blur">
-            <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 text-sm text-slate-200 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-                <p>(c) {new Date().getFullYear()} Quiet Summit. All rights reserved.</p>
-                <p>Built for verified journeys, trusted partners, and thoughtful launch onboarding.</p>
-            </div>
-        </footer>
-    );
+	return (
+		<footer className="border-t border-paper/10 bg-ink">
+			<div className="mx-auto flex w-full max-w-[1400px] flex-col gap-2 px-6 py-10 text-[0.75rem] uppercase tracking-widest text-paper/50 md:flex-row md:items-center md:justify-between lg:px-10">
+				<p>© {new Date().getFullYear()} {brand.name}</p>
+				<p>{brand.launchBadge}</p>
+			</div>
+		</footer>
+	);
 }
 
 export default Footer;

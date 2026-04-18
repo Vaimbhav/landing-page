@@ -4,21 +4,18 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				midnight: '#0B1220',
-				mist: '#DDE9F6',
-				cyan: '#6BE3FF',
-				sunrise: '#FF9A5A',
-				pine: '#1F6C5A',
+				ink: '#0A0A0A',
+				paper: '#FAFAF7',
+				stone: '#E8E4D9',
+				ash: '#1A1A1A',
+				dim: '#8A8A85',
 			},
 			fontFamily: {
-				display: ['Space Grotesk', 'sans-serif'],
-				body: ['Manrope', 'sans-serif'],
+				serif: ['Fraunces', 'Georgia', 'serif'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
 			},
-			boxShadow: {
-				glow: '0 20px 45px rgba(15, 24, 43, 0.35)',
-			},
-			backgroundImage: {
-				grain: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.06) 1px, transparent 0)',
+			letterSpacing: {
+				widest: '0.22em',
 			},
 		},
 	},

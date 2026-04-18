@@ -1,30 +1,25 @@
 import {useMemo, useState} from 'react';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const WHATSAPP_REGEX = /^\+?[1-9]\d{7,14}$/;
-const ALLOWED_ROLES = ['MEMBER', 'GUIDE', 'HOMESTAY_OWNER'];
+// National number only (country code handled separately). 7-14 digits.
+const WHATSAPP_NATIONAL_REGEX = /^[1-9]\d{6,13}$/;
+const ALLOWED_ROLES = ['TRAVELLER', 'MEMBER', 'GUIDE', 'HOMESTAY_OWNER'];
 const STORAGE_KEY = 'qs_waitlist_emails';
 
 const initialFormState = {
 	fullName: '',
+	countryCode: '+91',
 	whatsappNumber: '',
 	email: '',
-	role: 'MEMBER',
+	role: 'TRAVELLER',
 };
 
 const getStoredEmails = () => {
-	if (typeof window === 'undefined') {
-		return [];
-	}
-
+	if (typeof window === 'undefined') return [];
 	try {
 		const raw = window.localStorage.getItem(STORAGE_KEY);
 		const parsed = raw ? JSON.parse(raw) : [];
-
-		if (!Array.isArray(parsed)) {
-			return [];
-		}
-
+		if (!Array.isArray(parsed)) return [];
 		return parsed.filter((item) => typeof item === 'string');
 	} catch {
 		return [];
@@ -32,96 +27,81 @@ const getStoredEmails = () => {
 };
 
 const persistEmail = (email, existingEmails) => {
-	if (typeof window === 'undefined') {
-		return existingEmails;
-	}
-
+	if (typeof window === 'undefined') return existingEmails;
 	const next = Array.from(new Set([...existingEmails, email]));
 	window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
 	return next;
 };
 
 const normalizeName = (name) => name.trim().replace(/\s+/g, ' ');
-const normalizeWhatsapp = (phone) => phone.trim().replace(/[\s()-]/g, '');
+const normalizeWhatsappNational = (phone) => phone.trim().replace(/[\s()\-]/g, '');
 const normalizeEmail = (email) => email.trim().toLowerCase();
 
 export const useWaitlist = () => {
 	const [form, setForm] = useState(initialFormState);
 	const [knownEmails, setKnownEmails] = useState(() => getStoredEmails());
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [feedback, setFeedback] = useState({
-		type: 'idle',
-		message: '',
-	});
+	const [feedback, setFeedback] = useState({type: 'idle', message: ''});
 
 	const normalizedName = useMemo(() => normalizeName(form.fullName), [form.fullName]);
-	const normalizedWhatsapp = useMemo(
-		() => normalizeWhatsapp(form.whatsappNumber),
+	const normalizedWhatsappNational = useMemo(
+		() => normalizeWhatsappNational(form.whatsappNumber),
 		[form.whatsappNumber],
 	);
 	const normalizedEmail = useMemo(() => normalizeEmail(form.email), [form.email]);
 	const normalizedRole = useMemo(() => form.role.trim().toUpperCase(), [form.role]);
 
-	const nameError = normalizedName.length < 2 ? 'Enter a valid full name.' : '';
-	const whatsappError = WHATSAPP_REGEX.test(normalizedWhatsapp)
-		? ''
-		: 'Enter a valid WhatsApp number with country code.';
+	// Only email is mandatory. Name optional. WhatsApp optional — but if provided, must be valid.
 	const emailError = EMAIL_REGEX.test(normalizedEmail) ? '' : 'Enter a valid email address.';
-	const roleError = ALLOWED_ROLES.includes(normalizedRole)
-		? ''
-		: 'Select a valid role.';
+	const whatsappError =
+		normalizedWhatsappNational.length === 0
+			? ''
+			: WHATSAPP_NATIONAL_REGEX.test(normalizedWhatsappNational)
+				? ''
+				: 'Enter a valid WhatsApp number.';
+	const roleError = ALLOWED_ROLES.includes(normalizedRole) ? '' : 'Select a valid role.';
 
-	const formError = nameError || whatsappError || emailError || roleError;
+	const formError = emailError || whatsappError || roleError;
 	const isDuplicateLocal = useMemo(
 		() => knownEmails.includes(normalizedEmail),
 		[knownEmails, normalizedEmail],
 	);
 
 	const setField = (field, value) => {
-		setForm((prev) => ({
-			...prev,
-			[field]: value,
-		}));
+		setForm((prev) => ({...prev, [field]: value}));
+		setFeedback((prev) => (prev.message ? {type: 'idle', message: ''} : prev));
 	};
 
 	const submit = async (event) => {
 		event.preventDefault();
-
-		if (isSubmitting) {
-			return;
-		}
+		if (isSubmitting) return;
 
 		if (formError) {
-			setFeedback({
-				type: 'error',
-				message: formError,
-			});
+			setFeedback({type: 'error', message: formError});
 			return;
 		}
 
 		if (isDuplicateLocal) {
-			setFeedback({
-				type: 'success',
-				message: 'You are already on the waitlist with this email.',
-			});
+			setFeedback({type: 'success', message: 'You are already on the waitlist with this email.'});
 			return;
 		}
 
 		setIsSubmitting(true);
 		setFeedback({type: 'idle', message: ''});
 
+		const fullWhatsapp =
+			normalizedWhatsappNational.length > 0
+				? `${form.countryCode}${normalizedWhatsappNational}`
+				: '';
+
 		try {
-			const apiBaseUrl = (
-				import.meta.env.VITE_API_BASE_URL || '/api'
-			).replace(/\/$/, '');
+			const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 			const response = await fetch(`${apiBaseUrl}/waitlist`, {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
+				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
 					fullName: normalizedName,
-					whatsappNumber: normalizedWhatsapp,
+					whatsappNumber: fullWhatsapp,
 					email: normalizedEmail,
 					role: normalizedRole,
 				}),
@@ -131,15 +111,11 @@ export const useWaitlist = () => {
 
 			if (response.status === 201) {
 				setKnownEmails((prev) => persistEmail(normalizedEmail, prev));
-				setForm((prev) => ({
-					...initialFormState,
-					role: prev.role,
-				}));
+				setForm((prev) => ({...initialFormState, role: prev.role, countryCode: prev.countryCode}));
 				setFeedback({
 					type: 'success',
 					message:
-						payload.message ||
-						'Registration received. We will contact you for onboarding.',
+						payload.message || 'You are on the list. We will reach out closer to launch.',
 				});
 				return;
 			}
@@ -148,23 +124,19 @@ export const useWaitlist = () => {
 				setKnownEmails((prev) => persistEmail(normalizedEmail, prev));
 				setFeedback({
 					type: 'success',
-					message:
-						payload.message || 'You are already on the waitlist.',
+					message: payload.message || 'You are already on the waitlist.',
 				});
 				return;
 			}
 
 			setFeedback({
 				type: 'error',
-				message:
-					payload.message ||
-					'Something went wrong. Please try again in a moment.',
+				message: payload.message || 'Something went wrong. Please try again in a moment.',
 			});
 		} catch {
 			setFeedback({
 				type: 'error',
-				message:
-					'Could not reach server. Please check your connection and try again.',
+				message: 'Could not reach server. Please check your connection and try again.',
 			});
 		} finally {
 			setIsSubmitting(false);
@@ -175,7 +147,7 @@ export const useWaitlist = () => {
 		form,
 		setField,
 		fieldErrors: {
-			fullName: nameError,
+			fullName: '',
 			whatsappNumber: whatsappError,
 			email: emailError,
 			role: roleError,
